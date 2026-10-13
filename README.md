@@ -7,12 +7,19 @@ A small Xbox 360 homebrew demo written in C++ with [libxenon](https://github.com
 - An Xbox 360 that can run unsigned code (RGH/JTAG) with XeLL
 - A wired Xbox 360 controller
 
-## Build
+## Get the build
+
+**Easiest: download it from GitHub.** Every push is built automatically.
+Open the **Actions** tab, click the latest run, and download the
+`hello360.elf32` artifact. Tagged versions (like `v0.1.0`) are also
+attached to the **Releases** page.
+
+**Or build it yourself (Ubuntu / WSL):**
 ```sh
-export DEVKITXENON=/usr/local/xenon
-make
+./setup.sh
 ```
-This produces `hello360.elf32`.
+This installs everything, builds the libxenon toolchain (an hour or more
+the first time), and produces `hello360.elf32`.
 
 ## Run
 1. Copy `hello360.elf32` to a FAT32 USB drive as `xenon.elf` (or the filename your XeLL setup expects).
@@ -26,6 +33,8 @@ You can also load the file over the network with TFTP.
 |------|---------|
 | `main.cpp` | App source |
 | `Makefile` | Build script for the libxenon toolchain |
+| `setup.sh` | One-command local setup and build (Ubuntu/WSL) |
+| `.github/workflows/build.yml` | Cloud build on GitHub Actions |
 
 ## Notes
 - If your libxenon install ships a template Makefile that differs from this one, use that and keep `main.cpp`.
